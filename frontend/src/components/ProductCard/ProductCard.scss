@@ -1,0 +1,125 @@
+// Переменные
+$primary-color: #3498db;
+$danger-color: #e74c3c;
+$success-color: #2ecc71;
+$warning-color: #f39c12;
+$dark-color: #2c3e50;
+$light-color: #ecf0f1;
+$text-color: #333;
+$border-radius: 8px;
+
+// Миксин для карточки
+@mixin card {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Миксин для кнопок
+@mixin button($color) {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background: $color;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  
+  &:hover {
+    background: darken($color, 10%);
+  }
+}
+
+// Стили карточки
+.product-card {
+  @include card;
+  
+  &__header {
+    padding: 16px;
+    background: $dark-color;
+    color: white;
+  }
+  
+  &__title {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  &__category {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  
+  &__body {
+    padding: 16px;
+  }
+  
+  &__description {
+    margin: 0 0 12px 0;
+    color: $text-color;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  &__price {
+    font-size: 20px;
+    font-weight: bold;
+    color: $success-color;
+  }
+  
+  &__stock {
+    font-size: 14px;
+    padding: 4px 8px;
+    background: $light-color;
+    border-radius: 4px;
+    
+    &--low {
+      background: $danger-color;
+      color: white;
+    }
+  }
+  
+  &__rating {
+    color: $warning-color;
+    font-size: 14px;
+    
+    span {
+      margin-left: 4px;
+      color: $text-color;
+    }
+  }
+  
+  &__footer {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    background: $light-color;
+    border-top: 1px solid darken($light-color, 10%);
+    
+    .btn--edit {
+      @include button($primary-color);
+      flex: 1;
+    }
+    
+    .btn--delete {
+      @include button($danger-color);
+      flex: 1;
+    }
+  }
+}
